@@ -1,28 +1,27 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-1.0.x"]  // Add this line
-}
-
-
 model Login {
-  id       Int     @id @default(autoincrement())
-  userName String  @unique
+  id       Int    @id @default(autoincrement())
+  userName String @unique
   password String
 }
 
 model Employee {
   id          Int      @id @default(autoincrement())
-  image       String?  
+  image       String?
   name        String
   email       String   @unique
   mobile      String   @unique
   designation String
   gender      String
-  courses     String[] 
+  courses     String[]
   createDate  DateTime @default(now())
 }
