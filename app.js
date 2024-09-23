@@ -32,7 +32,9 @@ const authenticateToken = (req, res, next) => {
 };
 
 // API Routes
-
+app.get('/',async(req,res)=>{
+  res.json({msg:"Hello"});
+})
 // Register/Login Routes
 app.post('/login', async (req, res) => {
   const { userName, password } = req.body;
