@@ -5,7 +5,9 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]  // Add this line
 }
+
 
 model Login {
   id       Int     @id @default(autoincrement())
