@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('./prismaClient');
 const cloudinary = require('cloudinary').v2;
+const cors = require('cors');  // Import CORS
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -11,9 +12,17 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-
 const app = express();
+
+// Add CORS middleware
+app.use(cors({
+  origin: 'https://deals-dray-six.vercel.app',  // Allow only frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Allowed methods
+  credentials: true,  // Allow cookies/authorization headers
+}));
+
 app.use(bodyParser.json());
+
 
 // JWT Secret Key
 const JWT_SECRET = 'your_jwt_secret';
